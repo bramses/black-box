@@ -19,11 +19,11 @@ const testFlow = async () => {
 
     const carol = sf.user({
         address: walletAddress[0],
-        token: process.env.CAROL
+        token: '0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00'
     });
 
     await carol.flow({
-        recipient: process.env.ETH_RECIP,
+        recipient: '0xA8f3447922d786045CB582B0C825723B744a54df',
         flowRate: '0'
     });
     
