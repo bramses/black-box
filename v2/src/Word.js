@@ -6,8 +6,8 @@ import './App.css'
 function Word(props) {
 
   const [word, setWord] = useState({
-    name: "fish",
-    bounty: '0.00003',
+    name: props.name,
+    bounty: props.bounty,
     definitions: [
       {
         name: "waterboi",

@@ -1,7 +1,7 @@
 import './App.css'
 import Word from './Word'
+import SuperfluidSDK from '@superfluid-finance/js-sdk';
 // import './Ethereum'
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,19 +9,37 @@ import {
   Link
 } from "react-router-dom";
 
+const Web3 = require('web3');
+
+
+// users -> from json
+const init = async () => {
+  const sf = new SuperfluidSDK.Framework({
+    web3: new Web3(window.ethereum),
+  });
+  await sf.initialize()
+}
+
+
+const tommy = { bounties: [], address: '0xA8f3447922d786045CB582B0C825723B744a54df' } 
+const becca = { address: '0xA8f3447922d786045CB582B0C825723B744a54df', bounties: []}
+
+const words = [
+  {
+    name: "Sunfish",
+    bounty: 0.00003,
+    users: [tommy, becca]
+  },
+  {
+    name: "Seasonal Allergies",
+    bounty: 0.00003,
+    users: [becca, tommy]
+  }
+]
+
 
 function App() {
 
-  // users -> from json
-
-  const tommy = { address: '0x123' , monthlyPot: '$10', bounties: [] } // would this need to be server side?
-  const becca = { address: '0x456', monthlyPot: '$5', bounties: [] }
-
-  const words = [{
-    name : "Sunfish",
-    users: [tommy, becca]
-  }]
-  
   return (
     <Router>
       <div>
@@ -55,6 +73,9 @@ function App() {
       </div>
     </Router>
   )
+}
+export { words }
+export default App;
 
   // return (
   //   <div className="App">
@@ -64,6 +85,3 @@ function App() {
   //     </div>))}
   //   </div>
   // );
-}
-
-export default App;
